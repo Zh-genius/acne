@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Acne Severity Prediction</title>
+    <style>
+        .file-input {
+            display: none;
+        }
+        .custom-file-input {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Acne Severity Determination</h1>
+<p>Please upload three facial images: front, left, and right, then click "Predict Acne Severity"</p>
+
+<form method="POST" enctype="multipart/form-data">
+    <label>Front Image:</label>
+    <input type="file" name="front_img" accept="image/*" class="file-input" id="front-img" required>
+    <button type="button" class="custom-file-input" onclick="document.getElementById('front-img').click()">Choose File</button>
+    <br><br>
+
+    <label>Left Image:</label>
+    <input type="file" name="left_img" accept="image/*" class="file-input" id="left-img" required>
+    <button type="button" class="custom-file-input" onclick="document.getElementById('left-img').click()">Choose File</button>
+    <br><br>
+
+    <label>Right Image:</label>
+    <input type="file" name="right_img" accept="image/*" class="file-input" id="right-img" required>
+    <button type="button" class="custom-file-input" onclick="document.getElementById('right-img').click()">Choose File</button>
+    <br><br>
+
+    <input type="submit" value="Predict Acne Severity">
+</form>
+
+<!-- Display error message if there is one -->
+{% if error %}
+  <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<!-- Display prediction result if available -->
+{% if severity %}
+  <hr>
+  <h2>Prediction Result</h2>
+  <p><strong>Acne Severity Level: {{ severity }}</strong></p>
+  <p><strong>Treatment Suggestions:</strong> {{ recommendation }}</p>
+  <p><strong>Expected Outcome:</strong> {{ expected_result }}</p>
+{% endif %}
+
+</body>
+</html>
